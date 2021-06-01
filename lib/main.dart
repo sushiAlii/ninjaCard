@@ -4,7 +4,38 @@ void main() => runApp(MaterialApp(
       home: NinjaCard(),
     ));
 
-class NinjaCard extends StatelessWidget {
+class NinjaCard extends StatefulWidget {
+  @override
+  _NinjaCardState createState() => _NinjaCardState();
+}
+
+class _NinjaCardState extends State<NinjaCard> {
+  int ninjaLevel = 0;
+  String ninjaRank = 'Citizen';
+
+  /*
+  void defineRank(int level) {
+    if (level >= 10 && level < 20) {
+      setState(() {
+        ninjaRank = 'Chunin';
+      });
+    } else if (level >= 20 && level < 30) {
+      setState(() {
+        ninjaRank = 'Jonin';
+      });
+    } else if (level >= 30 && level < 40) {
+      setState(() {
+        ninjaRank = 'Anbu Elite';
+      });
+    } else if (level > 50) {
+      setState(() {
+        ninjaRank = 'Hokage';
+      });
+    }
+    */
+
+  //String ninjaRank = defineRank(ninjaLevel);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +45,15 @@ class NinjaCard extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.grey[900],
         elevation: 0.0,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            ninjaLevel += 1;
+          });
+        },
+        backgroundColor: Colors.grey[800],
+        child: Icon(Icons.add),
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30, 30, 20, 0),
@@ -30,21 +70,46 @@ class NinjaCard extends StatelessWidget {
                 height: 60.0,
                 color: Colors.grey[200],
               ),
-              Text(
-                'NINJA NAME',
-                style: TextStyle(
-                  letterSpacing: 2.0,
-                  color: Colors.grey,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'NINJA NAME',
+                    style: TextStyle(
+                      letterSpacing: 2.0,
+                      color: Colors.grey,
+                    ),
+                  ),
+                  Text(
+                    'LEVEL',
+                    style: TextStyle(
+                      letterSpacing: 2.0,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 10.0),
-              Text(
-                'Sushi',
-                style: TextStyle(
-                  color: Colors.amberAccent[200],
-                  fontSize: 25.0,
-                  letterSpacing: 2.0,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    'Sushi',
+                    style: TextStyle(
+                      color: Colors.amberAccent[200],
+                      fontSize: 25.0,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                  Text(
+                    '$ninjaLevel',
+                    style: TextStyle(
+                      color: Colors.amberAccent[200],
+                      fontSize: 25.0,
+                      letterSpacing: 2.0,
+                    ),
+                  ),
+                ],
               ),
               SizedBox(height: 30.0),
               Text(
@@ -56,7 +121,7 @@ class NinjaCard extends StatelessWidget {
               ),
               SizedBox(height: 10.0),
               Text(
-                'ANBU ELITE',
+                '$ninjaRank',
                 style: TextStyle(
                   color: Colors.amberAccent[200],
                   fontSize: 25.0,
