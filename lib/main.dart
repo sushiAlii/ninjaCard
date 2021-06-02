@@ -11,29 +11,22 @@ class NinjaCard extends StatefulWidget {
 
 class _NinjaCardState extends State<NinjaCard> {
   int ninjaLevel = 0;
-  String ninjaRank = 'Citizen';
+  String get ninjaRank => defineRank(ninjaLevel);
 
-  /*
-  void defineRank(int level) {
+  String defineRank(int level) {
     if (level >= 10 && level < 20) {
-      setState(() {
-        ninjaRank = 'Chunin';
-      });
+      return 'Chunin';
     } else if (level >= 20 && level < 30) {
-      setState(() {
-        ninjaRank = 'Jonin';
-      });
+      return 'Jonin';
     } else if (level >= 30 && level < 40) {
-      setState(() {
-        ninjaRank = 'Anbu Elite';
-      });
-    } else if (level > 50) {
-      setState(() {
-        ninjaRank = 'Hokage';
-      });
+      return 'Anbu Elite';
+    } else if (level >= 40 && level < 50) {
+      return 'Sannin';
+    } else if (level >= 50) {
+      return 'Hokage';
     }
-    */
-
+    return 'Genin';
+  }
   //String ninjaRank = defineRank(ninjaLevel);
 
   @override
